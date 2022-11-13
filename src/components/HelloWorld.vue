@@ -1,58 +1,62 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <h1>Vue3</h1>
+  <h2>{{name}}</h2>
+  <h2>{{age}}</h2>
+  <h2>{{obj.xd}}</h2>
+  <h2>{{obj.course}}</h2>
+  <h2>{{list}}</h2>
+  <button @click="xd">弹窗</button>
+  <button @click="change">弹窗1</button>
+  <button @click="changeC">弹窗2</button>
+  <button @click="changeH">弹窗3</button>
+
 </template>
 
 <script>
+import {ref, reactive} from 'vue'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  setup(){
+    let name = ref('张三')
+    let age = ref(18)
+    
+    let obj= reactive({
+      xd:'小滴课堂',
+      course:'vue3'
+    })
+    
+    function xd(){
+      alert(`你好，我是${name.value},今年${age.value}了`)
+    }
+
+    function change(){
+      name.value='李四'
+      age.value=19
+    }
+
+    function changeC(){
+      obj.course='react'
+    }
+
+    let list = reactive(['吃饭','睡觉','敲代码'])
+
+    function changeH() {
+      list[2]='路i阿鲁'
+    }
+
+    return {
+      name,
+      age,
+      obj,
+      list,
+      xd,
+      change,
+      changeC,
+      changeH
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
